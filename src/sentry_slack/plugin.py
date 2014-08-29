@@ -35,15 +35,15 @@ class SlackOptionsForm(notify.NotificationConfigurationForm):
 
 
 class SlackPlugin(notify.NotificationPlugin):
-    author = 'Sentry Team'
-    author_url = 'https://github.com/getsentry'
-    description = 'Post new exceptions to a Slack channel.'
+    author = 'Augustus'
+    author_url = 'https://github.com/augiwan/sentry-slack'
+    description = 'Post every single new exception to a Slack channel.'
     resource_links = (
         ('Bug Tracker', 'https://github.com/getsentry/sentry-slack/issues'),
         ('Source', 'https://github.com/getsentry/sentry-slack'),
     )
 
-    title = 'Slack'
+    title = 'Slack by augiwan'
     slug = 'slack'
     conf_key = 'slack'
     description = 'Send errors to Slack'
