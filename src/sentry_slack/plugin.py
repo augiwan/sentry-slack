@@ -103,7 +103,6 @@ class SlackPlugin(notify.NotificationPlugin):
             raise
         
     def post_process(self, group, event, is_new, is_sample, **kwargs):
-        
         if not self.should_notify(group, event):
             return
 
