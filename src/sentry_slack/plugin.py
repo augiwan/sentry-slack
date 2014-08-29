@@ -101,3 +101,10 @@ class SlackPlugin(notify.NotificationPlugin):
         except urllib2.HTTPError as e:
             logger.error('Error posting to Slack: %s', e.read(), exc_info=True)
             raise
+        
+    def post_process(self, group, event, is_new, is_sample, **kwargs):
+        
+        if not self.should_notify(group, event):
+            return
+
+        self.notify_users(group, event)
