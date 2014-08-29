@@ -32,6 +32,9 @@ class SlackOptionsForm(notify.NotificationConfigurationForm):
     webhook = forms.CharField(
         help_text='Your custom Slack webhook URL',
         widget=forms.TextInput(attrs={'class': 'span8'}))
+    new_only = forms.BooleanField(
+        help_text='Only notify on new events or regressions',
+        required=False)
 
 
 class SlackPlugin(notify.NotificationPlugin):
@@ -103,6 +106,11 @@ class SlackPlugin(notify.NotificationPlugin):
             raise
         
     def post_process(self, group, event, is_new, is_sample, **kwargs):
+        new_only = self.get_option('new_only', event.project)
+        
+        if new_only and not is_new:
+            return
+
         if not self.should_notify(group, event):
             return
 
