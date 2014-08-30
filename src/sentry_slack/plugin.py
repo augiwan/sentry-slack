@@ -73,14 +73,21 @@ class SlackPlugin(notify.NotificationPlugin):
 
         message = getattr(group, 'message_short', group.message).encode('utf-8')
         culprit = getattr(group, 'title', group.culprit).encode('utf-8')
-        user_email = getattr(group, 'user', group.user['email']).encode('utf-8')
+        
+        print ''
+        print group
+        print ''
+        print dir(group)
+        print ''
+        
+        # user_email = getattr(group, 'user', group.user['email']).encode('utf-8')
 
         # They can be the same if there is no culprit
         # So we set culprit to an empty string instead of duplicating the text
         if message == culprit:
             culprit = ''
             
-        message = ''.join([message, ' by ', user_email])
+        # message = ''.join([message, ' by ', user_email])
 
         payload = {
             'parse': 'none',
