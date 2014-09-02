@@ -63,10 +63,12 @@ class SlackPlugin(notify.NotificationPlugin):
         webhook = self.get_option('webhook', event.project)
         project = event.project
         team = event.team
+        
+        event_url = ''.join([group.get_absolute_url(),'events/',str(event.id),'/'])
 
-        title = '%s on <%s|%s %s>' % (
+        title = '%s on <%s|%s : %s>' % (
             'New event' if group.times_seen == 1 else 'Regression',
-            group.get_absolute_url(),
+            event_url,
             escape(team.name.encode('utf-8')),
             escape(project.name.encode('utf-8')),
         )
@@ -85,7 +87,7 @@ class SlackPlugin(notify.NotificationPlugin):
             user_email = (user_email).encode('utf-8')
             title = ''.join([title, ' by ', user_email])
         
-        title = ''.join([title, ' (', str(event.id), ')'])
+        # title = ''.join([title, ' (', str(event.id), ')'])
 
         payload = {
             'parse': 'none',
