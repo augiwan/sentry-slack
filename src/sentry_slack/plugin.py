@@ -85,7 +85,7 @@ class SlackPlugin(notify.NotificationPlugin):
             user_email = (user_email).encode('utf-8')
             title = ''.join([title, ' by ', user_email])
         
-        title = ''.join([title, ' (', event.id, ')'])
+        title = ''.join([title, ' (', str(event.id), ')'])
 
         payload = {
             'parse': 'none',
