@@ -84,6 +84,8 @@ class SlackPlugin(notify.NotificationPlugin):
         if user_email is not None:
             user_email = (user_email).encode('utf-8')
             title = ''.join([title, ' by ', user_email])
+        
+        title = ''.join([title, ' (', event.id, ')'])
 
         payload = {
             'parse': 'none',
